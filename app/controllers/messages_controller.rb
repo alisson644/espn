@@ -2,6 +2,10 @@ class MessagesController < ApplicationController
   before_action :set_message, only: %I[show edit update destroy]
 
   def index
+    @messages = Message.all.order('created_at DESC')
+  end
+
+  def show
   end
 
   def new
@@ -25,6 +29,6 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-    params.require(:message).permite(:title, :description)
+    params.require(:message).permit(:title, :description)
   end
 end
