@@ -5,8 +5,7 @@ class MessagesController < ApplicationController
     @messages = Message.all.order('created_at DESC')
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @message = Message.new
@@ -20,6 +19,22 @@ class MessagesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit; end
+
+  def update
+    if @message.update(message_params)
+      redirect_to message_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @message.destroy
+
+    redirect_to root_path
   end
 
   private
