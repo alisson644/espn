@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!, except: %I[index show]
   before_action :set_message, only: %I[show edit update destroy]
 
   def index
